@@ -1,0 +1,143 @@
+<!doctype html>
+
+<head>
+   
+    <title>Recipe Finder</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033
+        }
+
+        nav {
+            padding: 16px 5%;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px
+        }
+
+        .hero {
+            padding: 55px 0
+        }
+
+        h1 {
+            font-size: clamp(40px, 7vw, 76px)
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e4e7ee;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px #0000000b
+        }
+
+        .btn {
+            background: #5757f7;
+            color: #fff;
+            border: 0;
+            border-radius: 10px;
+            padding: 11px 16px;
+            font-weight: bold;
+            cursor: pointer
+        }
+
+        .alt {
+            background: #eef0ff;
+            color: #4b4bd2
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px
+        }
+
+        .row {
+            display: flex;
+            gap: 10px
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 99px;
+            background: #eef0ff;
+            color: #4b4bd2;
+            font-size: 12px;
+            font-weight: bold
+        }
+
+        .stat {
+            font-size: 32px;
+            font-weight: bold
+        }
+
+        @media(max-width:650px) {
+            .row {
+                flex-wrap: wrap
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <b>🍳 RECIPE FINDER</b>
+        <button class="btn" onclick="surprise()">Surprise Me</button>
+    </nav>
+    <main>
+        <section class="hero">
+            <h1>What is cooking?</h1>
+            <input id="q" 
+            placeholder="Search recipe or cuisine"
+             oninput="render()">
+        </section>
+        <div id="r" class="grid"></div>
+    </main>
+    <script>const d = [["Butter Paneer", "Indian", "35 min"],
+     ["Garlic Pasta", "Italian", "20 min"], 
+     ["Chicken Tacos", "Mexican", "25 min"],
+      ["Fried Rice", "Asian", "18 min"],
+       ["Chocolate Pancakes", "Dessert", "15 min"]];
+        function render()
+         { r.innerHTML = d.filter(x => x.join(" ").toLowerCase().includes(q.value.toLowerCase())).map(x => `<article class="card">
+         <div style="font-size:55px">🍽️</div>
+         <span class="tag">${x[1]}</span>
+         <h2>${x[0]}</h2>
+         <p>⏱ ${x[2]}</p>
+         <button class="btn" onclick="alert('Recipe opened')">View Recipe</button>
+         </article>`).join("") } 
+         function surprise() 
+         { q.value = d[Math.floor(Math.random() * d.length)][0]; 
+         render() } render();
+         
+         </script>
+ </body>
+
+</html>
